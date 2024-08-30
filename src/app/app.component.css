@@ -1,0 +1,52 @@
+.title-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    background-color: #f8f9fa;
+    border-bottom: 1px solid #ddd;
+}
+
+.title-bar-left {
+    flex: 1;
+}
+
+.title-bar-right {
+    display: flex;
+    gap: 10px;
+}
+
+.app-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #333;
+}
+
+.title-bar-button {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.title-bar-button:hover {
+    background-color: #0056b3;
+}
+
+.back-button {
+    margin-right: 15px;
+    background-color: #6c757d;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    font-size: 14px;
+    border-radius: 4px;
+}
+
+.back-button:hover {
+    background-color: #5a6268;
+}
