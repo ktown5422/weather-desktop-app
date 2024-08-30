@@ -2,6 +2,10 @@
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.1.
 
+## Run Electron app
+
+Run `npm start` The Angular project will be built inside the dist/weather-desktop-app folder and Electron will be started with a GUI window that should display the Angular application.
+
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
