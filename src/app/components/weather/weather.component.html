@@ -1,1 +1,31 @@
-<p>weather works!</p>
+<div class="weather-container">
+    <h2>Weather Desktop App</h2>
+
+    <div class="location-inputs">
+        <label for="city-input">Enter City:</label>
+        <input id="city-input" [(ngModel)]="city" placeholder="Enter city name" />
+
+        <label for="city-select">Or Select a City:</label>
+        <select id="city-select" [(ngModel)]="city">
+            <option *ngFor="let option of cityOptions" [value]="option">{{ option }}</option>
+        </select>
+    </div>
+
+    <button (click)="getWeatherData()">Get Weather</button>
+
+    @if (weatherData) {
+    <div class="weather-info">
+        <h3>Weather in {{ weatherData.location.name }}</h3>
+        <p>Temperature: {{ weatherData.current.temperature }}°C / {{
+            convertToFahrenheit(weatherData.current.temperature) }}°F</p>
+        <p>Weather: {{ weatherData.current.weather_descriptions[0] }}</p>
+        <p>Wind Speed: {{ weatherData.current.wind_speed }} km/h</p>
+        <p>Humidity: {{ weatherData.current.humidity }}%</p>
+    </div>
+    }
+    @if (error) {
+    <div class="error-message">
+        <p>{{ error }}</p>
+    </div>
+    }
+</div>

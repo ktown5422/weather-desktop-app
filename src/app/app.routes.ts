@@ -4,7 +4,7 @@ import { SettingsComponent } from './components/settings/settings.component';
 import { LoginComponent } from './components/login/login.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { path: 'settings', component: SettingsComponent },
-    { path: 'login', component: LoginComponent },
+    { path: '', title: 'Home', component: HomeComponent },
+    { path: 'settings', title: 'Settings', component: SettingsComponent },
+    { path: 'login', title: 'Login', component: LoginComponent },
 ];

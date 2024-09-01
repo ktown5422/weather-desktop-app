@@ -15,12 +15,10 @@ export class AppComponent {
 
 
   onSettingsClick(): void {
-    // Navigate to the settings page
     this.router.navigate(['/settings']);
   }
 
   onLoginClick(): void {
-    // Navigate to the login page
     this.router.navigate(['/login']);
   }
 
