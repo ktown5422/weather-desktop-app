@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { SettingsService } from '../../services/settings.service';
-import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-settings',
@@ -13,42 +12,44 @@ import { CommonModule } from '@angular/common';
 export class SettingsComponent implements OnInit {
   apiKey = { key: 'apiKey', value: '' };
   apiUrl = { key: 'apiUrl', value: '' };
+  error: string | null = null;
 
-  constructor(private settingsService: SettingsService) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.loadSettings();
+    this.loadApiSettings();
   }
 
-  loadSettings() {
-    this.settingsService.getSettings().then(settings => {
+  async loadApiSettings(): Promise<void> {
+    try {
+      const settings = await window.electron.ipcRenderer.invoke('get-settings');
+      this.apiKey.value = settings['apiKey'] || '';
+      this.apiUrl.value = settings['apiUrl'] || '';
 
-      const apiKeySetting = settings.find(s => s.key === 'apiKey');
-      const apiUrlSetting = settings.find(s => s.key === 'apiUrl');
-
-      if (apiKeySetting) {
-        this.apiKey.value = apiKeySetting.value;
+      if (!this.apiKey.value || !this.apiUrl.value) {
+        this.error = 'API Key or URL not found in settings.';
+      } else {
+        this.error = null;
       }
-
-      if (apiUrlSetting) {
-        this.apiUrl.value = apiUrlSetting.value;
-      }
-    }).catch(error => {
-      console.error('Error loading settings:', error);
-    });
+    } catch (error) {
+      console.error('Error fetching API settings:', error);
+      this.error = 'Failed to load API settings.';
+    }
   }
 
-  saveSetting(key: string, value: string) {
+  saveSetting(key: string, value: string): void {
     if (!key || !value) {
       console.warn('Both key and value are required to update a setting.');
       return;
     }
 
-    this.settingsService.updateSetting(key, value).then(() => {
-      console.log(`Setting updated: ${key} = ${value}`);
-      this.loadSettings();
-    }).catch(error => {
-      console.error('Error updating setting:', error);
-    });
+    window.electron.ipcRenderer.invoke('update-setting', { key, value })
+      .then(() => {
+        console.log(`Setting updated: ${key} = ${value}`);
+        this.loadApiSettings();
+      })
+      .catch(error => {
+        console.error('Error updating setting:', error);
+      });
   }
 }

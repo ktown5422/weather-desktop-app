@@ -1,10 +1,16 @@
 <div class="settings-container">
     <h2>Application Settings</h2>
+
+    <p>Current API Key: {{ apiKey.value }}</p>
+
     <div class="setting-item">
         <label>API Key</label>
         <input [(ngModel)]="apiKey.value" placeholder="Enter API Key" />
         <button (click)="saveSetting(apiKey.key, apiKey.value)">Save</button>
     </div>
+
+    <p>Current API URL: {{ apiUrl.value }}</p>
+
     <div class="setting-item">
         <label>API URL</label>
         <input [(ngModel)]="apiUrl.value" placeholder="Enter API URL" />
