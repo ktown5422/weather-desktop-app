@@ -5,6 +5,7 @@
     border: 1px solid #ddd;
     border-radius: 5px;
     text-align: center;
+    border-color: crimson;
 }
 
 .location-inputs {

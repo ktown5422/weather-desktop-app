@@ -1,1 +1,13 @@
-<p>settings works!</p>
+<div class="settings-container">
+    <h2>Application Settings</h2>
+    <div class="setting-item">
+        <label>API Key</label>
+        <input [(ngModel)]="apiKey.value" placeholder="Enter API Key" />
+        <button (click)="saveSetting(apiKey.key, apiKey.value)">Save</button>
+    </div>
+    <div class="setting-item">
+        <label>API URL</label>
+        <input [(ngModel)]="apiUrl.value" placeholder="Enter API URL" />
+        <button (click)="saveSetting(apiUrl.key, apiUrl.value)">Save</button>
+    </div>
+</div>
