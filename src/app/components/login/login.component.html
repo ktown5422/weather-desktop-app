@@ -1,1 +1,26 @@
-<p>login works!</p>
+<div *ngIf="isAuthenticated">
+    <button (click)="logout()">Logout</button>
+    <button (click)="logoffAndRevokeTokens()">Logout and revoke tokens</button>
+    <button (click)="revokeAccessToken()">Revoke access token</button>
+    <button (click)="revokeRefreshToken()">Revoke refresh token</button>
+    <button (click)="refreshSession()">Refresh session</button>
+    <hr />
+
+    <br />
+
+    Is Authenticated: {{ isAuthenticated }}
+
+    <br />
+    userData
+    <div>{{ userData$ | async | json }}</div>
+
+    <br />
+</div>
+
+<div *ngIf="!isAuthenticated">
+    <button (click)="login()">Login</button>
+    <hr />
+</div>
+
+Configuration loaded:
+<p>{{ configuration$ | async | json }}</p>

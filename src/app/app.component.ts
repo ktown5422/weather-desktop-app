@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { Location } from '@angular/common';
+import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -11,7 +12,7 @@ import { Location } from '@angular/common';
 })
 export class AppComponent {
 
-  constructor(private router: Router, private location: Location) { }
+  constructor(private router: Router, private location: Location, private authService: AuthService) { }
 
 
   onSettingsClick(): void {

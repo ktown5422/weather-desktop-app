@@ -32,7 +32,7 @@ ipcMain.handle('get-settings', async () => {
                 console.error('Error fetching settings:', err.message);
                 reject(err);
             } else {
-                console.log('Fetched settings:', rows);
+                console.log('Fetched settings');
                 const settings = rows.reduce((acc, row) => {
                     acc[row.key] = row.value;
                     return acc;
@@ -52,7 +52,7 @@ ipcMain.handle('update-setting', async (event, setting) => {
                 console.error('Error updating setting:', err.message);
                 reject(err);
             } else {
-                console.log('Setting updated:', setting);
+                console.log('Setting updated');
                 resolve({ success: true });
             }
         });
