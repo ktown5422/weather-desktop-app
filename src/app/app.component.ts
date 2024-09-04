@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { Location } from '@angular/common';
-import { AuthService } from './auth/auth.service';
 
 @Component({
   selector: 'app-root',
@@ -12,8 +11,15 @@ import { AuthService } from './auth/auth.service';
 })
 export class AppComponent {
 
-  constructor(private router: Router, private location: Location, private authService: AuthService) { }
+  constructor(private router: Router, private location: Location) { }
 
+  onHomeClick(): void {
+    this.router.navigate(['/home']);
+  }
+
+  onWeatherClick(): void {
+    this.router.navigate(['/weather']);
+  }
 
   onSettingsClick(): void {
     this.router.navigate(['/settings']);
